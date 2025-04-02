@@ -24,26 +24,27 @@ if not check_api_keys():
     st.stop()
 
 # Title and description
-st.title("Automated AI Story Creator")
+st.title("Automatic AI Story Creator")
 st.markdown("""
-### Just select a theme and get an instant story with images!
-This app automatically generates complete stories with illustrated scenes using Gemini AI.
+### 🔮 Simply select a theme to instantly generate a story!
+The app will automatically create a complete story with illustrated scenes as soon as you choose a theme. No buttons to press!
 """)
 
 # Simplified sidebar for theme selection only
 st.sidebar.header("Story Theme")
 
-# Story theme selection
+# Story theme selection - using a key to detect changes
 story_theme = st.sidebar.selectbox(
-    "Select a Theme",
+    "Select a Theme to Generate Story",
     ["Adventure", "Fantasy", "Science Fiction", "Mystery", "Fairy Tale", "Fable", "Educational", "Superhero", "Space Exploration", "Underwater Adventure", "Time Travel", "Historical", "Animal Friends", "Magical Creatures", "Custom"],
-    index=0
+    index=0,
+    key="theme_selector"
 )
 
 # Custom theme input if selected
 custom_theme = ""
 if story_theme == "Custom":
-    custom_theme = st.sidebar.text_input("Enter Custom Theme")
+    custom_theme = st.sidebar.text_input("Enter Custom Theme", key="custom_theme_input")
 
 # Auto-set default values for other parameters
 target_audience = "All Ages"
@@ -53,12 +54,29 @@ character_traits = ""
 image_style = "Cartoon"
 num_scenes = 3
 
-# Add instruction
+# Add information about automatic generation
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 👇 Click to create your story!")
+st.sidebar.info("👆 Story will generate automatically when you select a theme!")
 
-# Process Button - make it more prominent
-generate_btn = st.sidebar.button("📚 Generate My Story!", type="primary", use_container_width=True)
+# Track theme changes to auto-generate content
+if 'last_theme' not in st.session_state:
+    st.session_state.last_theme = None
+    
+if 'last_custom_theme' not in st.session_state:
+    st.session_state.last_custom_theme = None
+
+# Set generate flag based on theme changes
+generate_story_now = False
+
+# Check if theme has changed
+if st.session_state.last_theme != story_theme:
+    st.session_state.last_theme = story_theme
+    generate_story_now = True
+    
+# For custom theme, also check if custom theme text changed
+if story_theme == "Custom" and st.session_state.last_custom_theme != custom_theme:
+    st.session_state.last_custom_theme = custom_theme
+    generate_story_now = True
 
 # Initialize session state for storing results
 if 'story_text' not in st.session_state:
@@ -78,7 +96,7 @@ if 'current_step' not in st.session_state:
 tab1, tab2 = st.tabs(["Story Generation", "Scene Visualization"])
 
 # Process the story generation pipeline
-if generate_btn and not st.session_state.processing:
+if generate_story_now and not st.session_state.processing:
     st.session_state.processing = True
     st.session_state.current_step = "story_generation"
     
