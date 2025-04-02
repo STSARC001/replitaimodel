@@ -1,0 +1,32 @@
+{
+  "themes": [
+    "Adventure", 
+    "Fantasy", 
+    "Science Fiction", 
+    "Mystery", 
+    "Fairy Tale", 
+    "Fable", 
+    "Educational", 
+    "Superhero", 
+    "Space Exploration", 
+    "Underwater Adventure", 
+    "Time Travel", 
+    "Historical", 
+    "Animal Friends", 
+    "Magical Creatures"
+  ],
+  "styles": [
+    "Cartoon", 
+    "Realistic", 
+    "Watercolor", 
+    "Digital Art", 
+    "3D Render"
+  ],
+  "default_style": "Cartoon",
+  "num_scenes": 5,
+  "target_audience": "All Ages",
+  "story_length": "Medium",
+  "random_theme_selection": true,
+  "save_json_metadata": true,
+  "additional_prompt_text": "Include vivid descriptions, engaging characters, and a satisfying resolution"
+}
