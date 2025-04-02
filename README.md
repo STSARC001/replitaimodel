@@ -1,71 +1,66 @@
-# AI Story Creator
+# Automatic AI Story Creator
 
-An AI-powered story generation and image creation application using Gemini AI.
-
-## Overview
-
-This application uses Google's Gemini AI to create engaging stories and visually represent them with generated images:
-
-1. **Story Generation**: Creates engaging, well-structured stories based on your chosen theme, target audience, and characters
-2. **Scene Description**: Identifies key scenes from the story that would make compelling visuals
-3. **Image Creation**: Uses Gemini 2.0 Flash image generation to create visual representations of each scene
-
-The application provides a simple and intuitive interface to generate and visualize stories for various audiences.
+An AI-powered story generation and visualization system that creates animated stories with text and images through a streamlined interface, requiring minimal user input.
 
 ## Features
 
-- **Story Generation**: Automatically generate creative stories with Gemini AI
-- **Scene Detection**: Identify the most visually interesting scenes from the story
-- **Image Generation**: Create images that represent key moments using Gemini image generation
-- **Customizable Settings**: Adjust story themes, audience, length, and visual style
-- **Download Support**: Save your favorite images for each scene
+- **Fully Automated**: Stories generate automatically when you select a theme
+- **AI-Powered Story Generation**: Uses Google's Gemini AI to create engaging stories
+- **Scene Visualization**: Automatically generates images for key scenes in the story
+- **Multiple Themes**: Choose from adventure, fantasy, science fiction, and more
+- **Customizable**: Add your own custom theme
 
-## Requirements
+## Technologies Used
 
-- Python 3.8 or higher
+- **Streamlit**: For the web interface
+- **Google Gemini API**: For story generation and image creation
+- **Python**: Core programming language
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
 - Gemini API key
 
-## Setup
+### Installation
 
-1. Clone this repository
-2. Install the required dependencies:
+1. Clone the repository
    ```
-   pip install streamlit google-generativeai pillow
+   git clone https://github.com/yourusername/ai-story-creator.git
+   cd ai-story-creator
    ```
-3. Set up your API key as an environment variable:
+
+2. Install dependencies
    ```
-   export GEMINI_API_KEY="your_api_key_here"
+   pip install -r requirements.txt
+   ```
+
+3. Set up your API keys
+   - Create a `.env` file or set environment variables:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+4. Run the application
+   ```
+   streamlit run app.py
    ```
 
 ## Usage
 
-Run the application:
+1. Select a theme from the dropdown menu in the sidebar
+2. The application will automatically generate a story based on your selection
+3. After the story is generated, images for key scenes will be created
+4. View the story text and download generated images
 
-```bash
-streamlit run app.py
-```
+## Future Enhancements
 
-### Story Parameters
+- Add voice narration using Bark AI
+- Implement video generation with OpenSora
+- Add more customization options
+- Support for longer stories with more scenes
 
-- **Theme**: Choose from Adventure, Fantasy, Science Fiction, Mystery, Fairy Tale, Fable, Educational, or Custom
-- **Target Audience**: Select the age group for your story
-- **Story Length**: Adjust how long you want your story to be
-- **Custom Theme**: Create your own theme for unique stories
+## License
 
-### Character Settings
-
-- **Main Character**: Define your story's protagonist
-- **Character Traits**: Add personality traits to your character
-
-### Image Settings
-
-- **Image Style**: Choose from visual styles like Realistic, Cartoon, Anime, Watercolor, or 3D Animation
-- **Number of Scenes**: Set how many scenes you want to visualize (1-5)
-
-## How It Works
-
-1. The application uses the Gemini AI API to generate a story based on your parameters
-2. It analyzes the story to identify key scenes that would make good visuals
-3. It sends scene descriptions to Gemini's image generation model
-4. It displays the story alongside the generated images for each scene
-5. You can download individual scene images for later use
+This project is licensed under the MIT License - see the LICENSE file for details.
