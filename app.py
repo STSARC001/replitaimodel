@@ -24,34 +24,20 @@ if not check_api_keys():
     st.stop()
 
 # Title and description
-st.title("AI Story Creator")
+st.title("Automated AI Story Creator")
 st.markdown("""
-Generate stories with AI-powered visuals.
-This app uses Gemini for story generation and image creation.
+### Just select a theme and get an instant story with images!
+This app automatically generates complete stories with illustrated scenes using Gemini AI.
 """)
 
-# Sidebar for controls and parameters
-st.sidebar.header("Story Parameters")
+# Simplified sidebar for theme selection only
+st.sidebar.header("Story Theme")
 
 # Story theme selection
 story_theme = st.sidebar.selectbox(
-    "Story Theme",
-    ["Adventure", "Fantasy", "Science Fiction", "Mystery", "Fairy Tale", "Fable", "Educational", "Custom"],
+    "Select a Theme",
+    ["Adventure", "Fantasy", "Science Fiction", "Mystery", "Fairy Tale", "Fable", "Educational", "Superhero", "Space Exploration", "Underwater Adventure", "Time Travel", "Historical", "Animal Friends", "Magical Creatures", "Custom"],
     index=0
-)
-
-# Target audience
-target_audience = st.sidebar.selectbox(
-    "Target Audience",
-    ["Children (3-8)", "Pre-teens (9-12)", "Teenagers", "Adults", "All Ages"],
-    index=4
-)
-
-# Story length
-story_length = st.sidebar.select_slider(
-    "Story Length",
-    options=["Very Short", "Short", "Medium", "Long"],
-    value="Short"
 )
 
 # Custom theme input if selected
@@ -59,24 +45,20 @@ custom_theme = ""
 if story_theme == "Custom":
     custom_theme = st.sidebar.text_input("Enter Custom Theme")
 
-# Character settings
-st.sidebar.header("Character Settings")
-main_character = st.sidebar.text_input("Main Character Name/Type (optional)")
-character_traits = st.sidebar.text_input("Character Traits (optional, comma-separated)")
+# Auto-set default values for other parameters
+target_audience = "All Ages"
+story_length = "Medium"
+main_character = ""
+character_traits = ""
+image_style = "Cartoon"
+num_scenes = 3
 
-# Image settings
-st.sidebar.header("Image Settings")
-image_style = st.sidebar.selectbox(
-    "Image Style",
-    ["Realistic", "Cartoon", "Anime", "Watercolor", "3D Animation"],
-    index=1
-)
+# Add instruction
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 👇 Click to create your story!")
 
-# Number of scenes
-num_scenes = st.sidebar.slider("Number of Scenes", min_value=1, max_value=5, value=3)
-
-# Process Button
-generate_btn = st.sidebar.button("Generate Story", type="primary")
+# Process Button - make it more prominent
+generate_btn = st.sidebar.button("📚 Generate My Story!", type="primary", use_container_width=True)
 
 # Initialize session state for storing results
 if 'story_text' not in st.session_state:
